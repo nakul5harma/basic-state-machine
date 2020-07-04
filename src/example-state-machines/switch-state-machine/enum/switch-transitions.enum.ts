@@ -1,3 +1,3 @@
 export enum SwitchTransitions {
-  SWITCH = 'switch',
+  SWITCH = 'SWITCH',
 }

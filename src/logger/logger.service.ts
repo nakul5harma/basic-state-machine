@@ -16,7 +16,7 @@ const loggerConfig: LoggerOptions = {
   transports: [
     new transports.File({
       dirname: 'logs',
-      filename: `server-${getDateInYYYYMMDDFormat(new Date())}.log`,
+      filename: `state-machine-${getDateInYYYYMMDDFormat(new Date())}.log`,
       maxsize: TEN_MBS_IN_BYTES,
       level: process.env.LOG_LEVEL || 'info',
     }),

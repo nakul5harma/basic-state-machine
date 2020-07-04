@@ -1,31 +1,49 @@
-export const createMachine = (stateMachineDefinition: any) => {
-  const machine = {
-    value: stateMachineDefinition.initialState,
-    transition: (currentState: any, event: any) => {
-      // The event is checked against the current state’s transitions.
-      const currentStateDefinition = stateMachineDefinition[currentState];
-      const destinationTransition = currentStateDefinition.transitions[event];
+import { LoggerService } from '../logger/logger.service';
 
-      // If a transition matches the event, that transition “happens”.
-      if (!destinationTransition) {
-        return;
-      }
+export class StateMachine {
+  private readonly logNameSpace = StateMachine.name;
+  private readonly logger = LoggerService.getLoggerServiceInstance();
 
-      const destinationState = destinationTransition.target;
-      const destinationStateDefinition =
-        stateMachineDefinition[destinationState];
+  createMachine(stateMachineDefinition: any) {
+    const machine = {
+      value: stateMachineDefinition.initialState,
+      transition: (currentState: any, event: any) => {
+        // The event is checked against the current state’s transitions.
+        const currentStateDefinition = stateMachineDefinition[currentState];
+        const destinationTransition = currentStateDefinition.transitions[event];
 
-      // By virtue of a transition “happening”, states are exited, and entered and the relevant actions are performed
-      destinationTransition.action();
-      currentStateDefinition.actions.onExit();
-      destinationStateDefinition.actions.onEnter();
+        // If a transition matches the event, that transition “happens”.
+        if (!destinationTransition) {
+          this.logger.warn(
+            `${this.logNameSpace}.createMachine.warned`,
+            `Destination transition is not defined`,
+            `currentState:`,
+            currentState,
+            `event:`,
+            event,
+          );
 
-      // The machine immediately is in the new state, ready to process the next event.
-      machine.value = destinationState;
+          throw new Error(
+            `Destination '${event}' transition is not defined from '${currentState}' state`,
+          );
+        }
 
-      return machine.value;
-    },
-  };
+        const destinationState = destinationTransition.target;
+        const destinationStateDefinition =
+          stateMachineDefinition[destinationState];
 
-  return machine;
-};
+        // By virtue of a transition “happening”, states are exited, and entered and the relevant actions are performed
+        destinationTransition.action();
+        currentStateDefinition.actions.onExit();
+        destinationStateDefinition.actions.onEnter();
+
+        // The machine immediately is in the new state, ready to process the next event.
+        machine.value = destinationState;
+
+        return machine.value;
+      },
+    };
+
+    return machine;
+  }
+}
