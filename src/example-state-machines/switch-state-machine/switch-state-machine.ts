@@ -1,16 +1,15 @@
 import { LoggerService } from '../../logger/logger.service';
+import { StateMachineModel } from '../../state-machine/model/state-machine.model';
 import { StateMachine } from '../../state-machine/state-machine';
 import { SwitchStates } from './enum/switch-states.enum';
 import { SwitchTransitions } from './enum/switch-transitions.enum';
 
 export class SwitchStateMachine {
-  private readonly logNameSpace = SwitchStateMachine.name;
-  private readonly logger = LoggerService.getLoggerServiceInstance();
+  private static readonly logNameSpace = SwitchStateMachine.name;
+  private static readonly logger = LoggerService.getLoggerServiceInstance();
 
-  getSwitchStateMachine() {
-    const stateMachine = new StateMachine();
-
-    return stateMachine.createMachine({
+  static getSwitchStateMachine(): StateMachineModel {
+    return StateMachine.createMachine({
       // One state is defined as the initial state. When a machine starts to execute, it automatically enters this state.
       initialState: SwitchStates.OFF,
       [SwitchStates.OFF]: {

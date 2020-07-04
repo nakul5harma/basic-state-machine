@@ -1,16 +1,15 @@
 import { LoggerService } from '../../logger/logger.service';
+import { StateMachineModel } from '../../state-machine/model/state-machine.model';
 import { StateMachine } from '../../state-machine/state-machine';
 import { TurnstileStates } from './enum/turnstile-states.enum';
 import { TurnstileTransitions } from './enum/turnstile-transitions.enum';
 
 export class CoinOperatedTurnstileStateMachine {
-  private readonly logNameSpace = CoinOperatedTurnstileStateMachine.name;
-  private readonly logger = LoggerService.getLoggerServiceInstance();
+  private static readonly logNameSpace = CoinOperatedTurnstileStateMachine.name;
+  private static readonly logger = LoggerService.getLoggerServiceInstance();
 
-  getCoinOperatedTurnstileStateMachine() {
-    const stateMachine = new StateMachine();
-
-    return stateMachine.createMachine({
+  static getCoinOperatedTurnstileStateMachine(): StateMachineModel {
+    return StateMachine.createMachine({
       // One state is defined as the initial state. When a machine starts to execute, it automatically enters this state.
       initialState: TurnstileStates.LOCKED,
       [TurnstileStates.LOCKED]: {

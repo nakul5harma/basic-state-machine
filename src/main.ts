@@ -8,7 +8,7 @@ const logNameSpace = `Main`;
 const logger = LoggerService.getLoggerServiceInstance();
 
 try {
-  const switchStateMachine = new SwitchStateMachine().getSwitchStateMachine();
+  const switchStateMachine = SwitchStateMachine.getSwitchStateMachine();
 
   // Initial State: OFF
   let switchMachineState = switchStateMachine.value;
@@ -51,7 +51,7 @@ try {
 }
 
 try {
-  const coinOperatedTurnstileStateMachine = new CoinOperatedTurnstileStateMachine().getCoinOperatedTurnstileStateMachine();
+  const coinOperatedTurnstileStateMachine = CoinOperatedTurnstileStateMachine.getCoinOperatedTurnstileStateMachine();
 
   // Initial State: LOCKED
   let coinOperatedTurnstileMachineState =

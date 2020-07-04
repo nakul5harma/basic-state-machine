@@ -1,6 +1,8 @@
+import { StateMachineModel } from './model/state-machine.model';
+
 export class StateMachine {
-  createMachine(stateMachineDefinition: any) {
-    const machine = {
+  static createMachine(stateMachineDefinition: any): StateMachineModel {
+    const machine: StateMachineModel = {
       value: stateMachineDefinition.initialState,
       transition: (currentState: any, event: any) => {
         // The event is checked against the current state’s transitions.
