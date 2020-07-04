@@ -2,7 +2,9 @@
 
 ## Description
 
-Simple finite state machine
+This repo has code for basic finite-state-machine. It was created for the purpose of learning. I followed below post by [Kent C. Dodds](https://kentcdodds.com/about/) -
+
+[Implementing a simple state machine library in JavaScript](https://kentcdodds.com/blog/implementing-a-simple-state-machine-library-in-javascript)
 
 ## Installation
 
