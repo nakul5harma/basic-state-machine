@@ -5,6 +5,13 @@ This state machine has 2 possible states -
 1. On
 2. Off
 
-'Off' is the initial state assigned to the state-machine. When 'Switch' event is performed state changes from 'Off' to 'On' or 'On' to 'Off' depending on the current state of the state-machine.
+'Off' is the initial state assigned to the state-machine. All possible state transitions are shown in the below table -
 
-![Switch State Machine](../../../assets/simple-state-machine.png)
+| Current State | Input  | Next State | Output         |
+| :------------ | :----- | :--------- | :------------- |
+| Off           | Switch | On         | Switch is On.  |
+| On            | Switch | Off        | Switch is Off. |
+
+## State Transitions
+
+![Switch State Machine](../../../assets/switch-state-machine.png)

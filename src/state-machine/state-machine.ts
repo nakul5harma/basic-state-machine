@@ -1,9 +1,4 @@
-import { LoggerService } from '../logger/logger.service';
-
 export class StateMachine {
-  private readonly logNameSpace = StateMachine.name;
-  private readonly logger = LoggerService.getLoggerServiceInstance();
-
   createMachine(stateMachineDefinition: any) {
     const machine = {
       value: stateMachineDefinition.initialState,
@@ -14,17 +9,8 @@ export class StateMachine {
 
         // If a transition matches the event, that transition “happens”.
         if (!destinationTransition) {
-          this.logger.warn(
-            `${this.logNameSpace}.createMachine.warned`,
-            `Destination transition is not defined`,
-            `currentState:`,
-            currentState,
-            `event:`,
-            event,
-          );
-
           throw new Error(
-            `Destination '${event}' transition is not defined from '${currentState}' state`,
+            `Destination transition '${event}' is not defined for '${currentState}' state`,
           );
         }
 

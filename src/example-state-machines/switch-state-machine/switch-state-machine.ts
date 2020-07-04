@@ -22,6 +22,7 @@ export class SwitchStateMachine {
               `${SwitchStates.OFF}: onEnter`,
             );
           },
+          // Each state can define actions that occur when a machine enters or exits that state. Actions will typically have side effects.
           onExit: () => {
             this.logger.info(
               `${this.logNameSpace}.getSwitchStateMachine.informed`,
@@ -46,12 +47,14 @@ export class SwitchStateMachine {
       },
       [SwitchStates.ON]: {
         actions: {
+          // Each state can define actions that occur when a machine enters or exits that state. Actions will typically have side effects.
           onEnter: () => {
             this.logger.info(
               `${this.logNameSpace}.getSwitchStateMachine.informed`,
               `${SwitchStates.ON}: onEnter`,
             );
           },
+          // Each state can define actions that occur when a machine enters or exits that state. Actions will typically have side effects.
           onExit: () => {
             this.logger.info(
               `${this.logNameSpace}.getSwitchStateMachine.informed`,
@@ -60,8 +63,11 @@ export class SwitchStateMachine {
           },
         },
         transitions: {
+          // Each state can define events that trigger a transition.
           [SwitchTransitions.SWITCH]: {
+            // A transition defines how a machine would react to the event, by exiting one state and entering another state.
             target: SwitchStates.OFF,
+            // A transition can define actions that occur when the transition happens. Actions will typically have side effects.
             action: () => {
               this.logger.info(
                 `${this.logNameSpace}.getSwitchStateMachine.informed`,

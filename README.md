@@ -7,6 +7,7 @@ This repo has code for basic finite-state-machine. It was created purely for the
 I have implemented below state-machines as an exercise for the tutorial -
 
 1. [Switch State Machine](./src/example-state-machines/switch-state-machine/switch-state-machine.md)
+1. [Coin-Operated Turnstile State Machine](./src/example-state-machines/coin-operated-turnstile-state-machine/coin-operated-turnstile-state-machine.md)
 
 ## Installation
 
